@@ -69,8 +69,8 @@ def test_cli_config() -> None:
     assert "llm_provider" in result.stdout
 
 
-@patch("takumi.interfaces.cli.app.run_workflow")
-@patch("takumi.interfaces.cli.app.get_llm")
+@patch("takumi.shared.presentation.cli.app.run_workflow")
+@patch("takumi.shared.presentation.cli.app.get_llm")
 def test_cli_run(mock_get_llm: MagicMock, mock_run_workflow: MagicMock) -> None:
     mock_run_workflow.return_value = {
         "task": "test task",

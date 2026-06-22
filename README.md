@@ -46,9 +46,8 @@ src/takumi/
 ├── shared/             # Cross-cutting kernel and infrastructure
 │   ├── config/         # Settings and environment
 │   ├── llm/            # LLM provider factory
+│   ├── presentation/   # CLI, future API
 │   └── tools/          # Development tools (future)
-├── interfaces/         # Driving adapters
-│   └── cli/            # Typer CLI commands
 └── main.py             # CLI entrypoint
 ```
 
