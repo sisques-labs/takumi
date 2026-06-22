@@ -30,6 +30,17 @@ def test_settings_validate_anthropic_key() -> None:
         settings.validate_api_key()
 
 
+def test_settings_validate_ollama_no_api_key_required() -> None:
+    settings = Settings(llm_provider=LLMProvider.OLLAMA)
+    settings.validate_api_key()
+
+
+def test_settings_ollama_defaults() -> None:
+    settings = Settings(llm_provider=LLMProvider.OLLAMA)
+    assert settings.ollama_base_url == "http://localhost:11434"
+    assert settings.ollama_model == "llama3.2"
+
+
 def test_settings_masked_config() -> None:
     settings = Settings(openai_api_key="sk-test-key-1234")
     masked = settings.masked_config()
@@ -54,6 +65,20 @@ def test_get_llm_anthropic(mock_chat_anthropic: MagicMock) -> None:
     mock_chat_anthropic.assert_called_once_with(
         api_key="sk-ant-test",
         model_name="claude-sonnet-4-20250514",
+    )
+
+
+@patch("langchain_ollama.ChatOllama")
+def test_get_llm_ollama(mock_chat_ollama: MagicMock) -> None:
+    settings = Settings(
+        llm_provider=LLMProvider.OLLAMA,
+        ollama_base_url="http://localhost:11434",
+        ollama_model="llama3.2",
+    )
+    get_llm(settings)
+    mock_chat_ollama.assert_called_once_with(
+        base_url="http://localhost:11434",
+        model="llama3.2",
     )
 
 

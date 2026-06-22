@@ -16,6 +16,7 @@ uv sync
 # Configure environment
 cp .env.example .env
 # Edit .env and set your API key (OPENAI_API_KEY or ANTHROPIC_API_KEY)
+# Or use Ollama locally — see "Local with Ollama" below
 
 # Verify installation
 uv run takumi version
@@ -29,12 +30,37 @@ uv run takumi run "Add user authentication with JWT"
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `LLM_PROVIDER` | `openai` or `anthropic` | `openai` |
+| `LLM_PROVIDER` | `openai`, `anthropic`, or `ollama` | `openai` |
 | `OPENAI_API_KEY` | OpenAI API key | — |
 | `ANTHROPIC_API_KEY` | Anthropic API key | — |
 | `OPENAI_MODEL` | OpenAI model name | `gpt-4o` |
 | `ANTHROPIC_MODEL` | Anthropic model name | `claude-sonnet-4-20250514` |
+| `OLLAMA_BASE_URL` | Ollama server URL | `http://localhost:11434` |
+| `OLLAMA_MODEL` | Ollama model name | `llama3.2` |
 | `LOG_LEVEL` | Log level | `INFO` |
+
+## Local with Ollama
+
+Run models locally without cloud API keys:
+
+```bash
+# 1. Install and start Ollama (https://ollama.com)
+ollama serve
+
+# 2. Pull a model
+ollama pull llama3.2
+
+# 3. Configure Takumi
+cat >> .env <<'EOF'
+LLM_PROVIDER=ollama
+OLLAMA_MODEL=llama3.2
+EOF
+
+# 4. Run
+uv run takumi run "Add user authentication with JWT"
+```
+
+Other models that work well for coding: `qwen2.5-coder`, `codellama`, `deepseek-r1`.
 
 ## Project structure
 

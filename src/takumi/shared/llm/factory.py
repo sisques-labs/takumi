@@ -22,4 +22,12 @@ def get_llm(settings: Settings) -> BaseChatModel:
             model_name=settings.anthropic_model,
         )
 
+    if settings.llm_provider == LLMProvider.OLLAMA:
+        from langchain_ollama import ChatOllama
+
+        return ChatOllama(
+            base_url=settings.ollama_base_url,
+            model=settings.ollama_model,
+        )
+
     raise ValueError(f"Unsupported LLM provider: {settings.llm_provider}")
