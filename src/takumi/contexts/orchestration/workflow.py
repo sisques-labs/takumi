@@ -2,8 +2,15 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langgraph.graph import END, START, StateGraph
 
-from takumi.agents.roles import AGENT_ROLES, WORKFLOW_ORDER
-from takumi.graph.state import TeamState
+from takumi.contexts.orchestration.state import TeamState
+from takumi.contexts.team.roles import AGENT_ROLES
+
+WORKFLOW_ORDER: list[str] = [
+    "architect",
+    "developer",
+    "tester",
+    "reviewer",
+]
 
 
 def _make_agent_node(agent_name: str, llm: BaseChatModel):

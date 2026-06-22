@@ -4,9 +4,9 @@ from rich.panel import Panel
 from rich.table import Table
 
 from takumi import __version__
-from takumi.config.settings import get_settings
-from takumi.graph.workflow import run_workflow
-from takumi.llm.factory import get_llm
+from takumi.contexts.orchestration.workflow import run_workflow
+from takumi.shared.config.settings import get_settings
+from takumi.shared.llm.factory import get_llm
 
 app = typer.Typer(
     name="takumi",

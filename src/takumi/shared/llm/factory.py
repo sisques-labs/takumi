@@ -1,6 +1,6 @@
 from langchain_core.language_models.chat_models import BaseChatModel
 
-from takumi.config.settings import LLMProvider, Settings
+from takumi.shared.config.settings import LLMProvider, Settings
 
 
 def get_llm(settings: Settings) -> BaseChatModel:

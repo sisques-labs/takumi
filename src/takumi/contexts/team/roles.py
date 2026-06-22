@@ -1,4 +1,4 @@
-from takumi.agents.base import AgentConfig
+from takumi.contexts.team.agent_config import AgentConfig
 
 ARCHITECT = AgentConfig(
     name="architect",
@@ -42,10 +42,3 @@ AGENT_ROLES: dict[str, AgentConfig] = {
     REVIEWER.name: REVIEWER,
     TESTER.name: TESTER,
 }
-
-WORKFLOW_ORDER: list[str] = [
-    ARCHITECT.name,
-    DEVELOPER.name,
-    TESTER.name,
-    REVIEWER.name,
-]

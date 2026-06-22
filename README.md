@@ -40,12 +40,16 @@ uv run takumi run "Add user authentication with JWT"
 
 ```
 src/takumi/
-├── agents/     # Agent role definitions (architect, developer, tester, reviewer)
-├── cli/        # Typer CLI commands
-├── config/     # Settings and environment configuration
-├── graph/      # LangGraph workflow orchestration
-├── llm/        # LLM provider factory
-└── tools/      # Development tools (future)
+├── contexts/           # Bounded contexts (domain boundaries)
+│   ├── orchestration/  # LangGraph workflow, state, routing
+│   └── team/           # Agent roles and configuration
+├── shared/             # Cross-cutting kernel and infrastructure
+│   ├── config/         # Settings and environment
+│   ├── llm/            # LLM provider factory
+│   └── tools/          # Development tools (future)
+├── interfaces/         # Driving adapters
+│   └── cli/            # Typer CLI commands
+└── main.py             # CLI entrypoint
 ```
 
 ## Development
