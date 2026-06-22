@@ -100,12 +100,12 @@ def test_cli_run(mock_get_llm: MagicMock, mock_run_workflow: MagicMock) -> None:
     mock_run_workflow.return_value = {
         "task": "test task",
         "messages": [],
-        "current_agent": "reviewer",
+        "current_agent": "qa",
         "artifacts": {
             "architect": "Design proposal",
-            "developer": "Implementation plan",
-            "tester": "Test plan",
-            "reviewer": "Review notes",
+            "backend": "API and data models",
+            "frontend": "Component breakdown",
+            "qa": "Test plan",
         },
     }
 

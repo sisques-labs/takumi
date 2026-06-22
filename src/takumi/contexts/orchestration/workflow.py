@@ -7,9 +7,9 @@ from takumi.contexts.team.roles import AGENT_ROLES
 
 WORKFLOW_ORDER: list[str] = [
     "architect",
-    "developer",
-    "tester",
-    "reviewer",
+    "backend",
+    "frontend",
+    "qa",
 ]
 
 
