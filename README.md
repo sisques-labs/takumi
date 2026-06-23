@@ -14,7 +14,7 @@ This project explores the future of agentic software engineering, where AI syste
 
 ## Key concepts
 
-- **Multi-agent architecture** — specialized agents for architecture, development, testing, and review
+- **Multi-agent architecture** — specialized agents for architecture, backend, frontend, and QA
 - **SDLC automation** — planning → architecture → implementation → testing → review
 - **Tool-augmented agents** — code execution, testing, and repository manipulation *(roadmap)*
 - **Iterative feedback loops** — debugging and refinement across agent handoffs *(roadmap)*
@@ -25,18 +25,23 @@ This project explores the future of agentic software engineering, where AI syste
 ```mermaid
 flowchart LR
     task[Feature request] --> architect[Architect]
-    architect --> developer[Developer]
-    developer --> tester[Tester]
-    tester --> reviewer[Reviewer]
-    reviewer --> output[Artifacts]
+    architect --> backend[Backend]
+    backend --> frontend[Frontend]
+    frontend --> qa[QA]
+    qa --> output[Artifacts]
 ```
 
 | Agent | Role |
 |-------|------|
-| **Architect** | Analyzes requirements and proposes system design |
-| **Developer** | Implements the design with clean, maintainable code |
-| **Tester** | Defines test strategy and validates behavior |
-| **Reviewer** | Reviews output for quality and best practices |
+| **Architect** | Analyzes requirements, proposes system design, and weighs trade-offs |
+| **Backend** | Designs clean APIs, data models, and server-side logic |
+| **Frontend** | Builds component structure with strong UX patterns and accessibility |
+| **QA** | Defines test strategy, edge cases, and coverage criteria |
+
+Each agent's behavior is driven by a role-specific **system prompt** stored as a
+configurable template under `src/takumi/contexts/team/prompts/` (one Markdown
+file per role). Templates support `$variable` substitution and are loaded at
+runtime, so prompts can be edited and versioned without changing code.
 
 ## Requirements
 
@@ -126,7 +131,7 @@ uv run ruff check .
 ## Roadmap
 
 - [ ] Real development tools (filesystem, git, shell, test runner)
-- [ ] Agent-specific prompts and reasoning
+- [x] Agent-specific role prompts (configurable templates)
 - [ ] Persistent memory and LangGraph checkpoints
 - [ ] Quality gates and iterative feedback loops
 - [ ] Integration with sisques-labs agent/prompt services

@@ -1,44 +1,33 @@
 from takumi.contexts.team.agent_config import AgentConfig
+from takumi.contexts.team.prompt_loader import load_prompt_template
 
 ARCHITECT = AgentConfig(
     name="architect",
     role="Software Architect",
-    system_prompt=(
-        "You are a software architect. Analyze requirements, propose high-level design, "
-        "and define the technical approach before implementation begins."
-    ),
+    prompt_template=load_prompt_template("architect"),
 )
 
-DEVELOPER = AgentConfig(
-    name="developer",
-    role="Software Developer",
-    system_prompt=(
-        "You are a software developer. Implement the design, write clean code, "
-        "and follow the architecture decisions made by the team."
-    ),
+BACKEND = AgentConfig(
+    name="backend",
+    role="Backend Engineer",
+    prompt_template=load_prompt_template("backend"),
 )
 
-REVIEWER = AgentConfig(
-    name="reviewer",
-    role="Code Reviewer",
-    system_prompt=(
-        "You are a code reviewer. Review implementations for correctness, maintainability, "
-        "and adherence to best practices."
-    ),
+FRONTEND = AgentConfig(
+    name="frontend",
+    role="Frontend Engineer",
+    prompt_template=load_prompt_template("frontend"),
 )
 
-TESTER = AgentConfig(
-    name="tester",
+QA = AgentConfig(
+    name="qa",
     role="QA Engineer",
-    system_prompt=(
-        "You are a QA engineer. Define test strategies, validate behavior, "
-        "and ensure quality before delivery."
-    ),
+    prompt_template=load_prompt_template("qa"),
 )
 
 AGENT_ROLES: dict[str, AgentConfig] = {
     ARCHITECT.name: ARCHITECT,
-    DEVELOPER.name: DEVELOPER,
-    REVIEWER.name: REVIEWER,
-    TESTER.name: TESTER,
+    BACKEND.name: BACKEND,
+    FRONTEND.name: FRONTEND,
+    QA.name: QA,
 }
